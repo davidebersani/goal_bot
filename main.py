@@ -20,6 +20,7 @@ if __name__=="__main__" :
     # New last title posted on the channel
     new_last_title_posted = ""
 
+    logging.info("Starting...")
     # Sleep 1 minute
     while(True) :
         time.sleep(60.0)
