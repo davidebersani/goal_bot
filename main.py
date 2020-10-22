@@ -35,7 +35,7 @@ if __name__=="__main__" :
                     first_post = False
                 if post.title!=last_title_posted :
                     logging.info("Sending message on channel: " + text)
-                    tbot.sendMessage(chat_id="@rt_soccer_goals", text=text)
+                    tbot.sendMessage(chat_id=my_token.telegram_channel, text=text)
                 else:
                     break
         
