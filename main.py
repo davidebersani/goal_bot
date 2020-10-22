@@ -6,7 +6,7 @@ import time
 import logging
 
 if __name__=="__main__" : 
-    logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     reddit = praw.Reddit('goal_bot')
     subreddit = reddit.subreddit("soccer")
 
@@ -26,7 +26,7 @@ if __name__=="__main__" :
 
         # Check for new posts
         first_post = True
-        for post in subreddit.hot() :       
+        for post in subreddit.hot(limit=20) :       
             # Check if is a goal post     
             if pattern.match(post.title) is not None and post.link_flair_text=="Media" :
                 text="⚽ " + post.title + "\n\nVideo: " + post.url
@@ -34,10 +34,10 @@ if __name__=="__main__" :
                     new_last_title_posted = post.title
                     first_post = False
                 if post.title!=last_title_posted :
-                    logging.debug("Sending message on channel: " + text)
+                    logging.info("Sending message on channel: " + text)
                     tbot.sendMessage(chat_id="@rt_soccer_goals", text=text)
                 else:
                     break
         
         last_title_posted = new_last_title_posted
-        logging.debug("Last post published: " + last_title_posted)
+        logging.info("Last post published: " + last_title_posted)
