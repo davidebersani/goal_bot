@@ -40,5 +40,6 @@ if __name__=="__main__" :
                 else:
                     break
         
-        last_title_posted = new_last_title_posted
-        logging.info("Last post published: " + last_title_posted)
+        if last_title_posted==new_last_title_posted :
+            last_title_posted = new_last_title_posted
+            logging.info("Last post published: " + last_title_posted)
