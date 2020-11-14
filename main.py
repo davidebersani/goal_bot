@@ -27,7 +27,7 @@ if __name__=="__main__" :
     logging.info("Starting...")
     # Sleep 1 minute
     while(True) :
-        time.sleep(3.0)
+        time.sleep(60.0)
 
         posts = []
         # Put all goal post in a list.
