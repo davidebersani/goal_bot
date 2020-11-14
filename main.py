@@ -44,7 +44,7 @@ if __name__=="__main__" :
         
         # Publish post on Telegram
         for p in to_post:
-            # tbot.sendMessage(chat_id=my_token.telegram_channel, text=p.text_to_publish)
+            tbot.sendMessage(chat_id=my_token.telegram_channel, text=p.text_to_publish)
             posted_last_hour.append(p)
         
         # Remove post older than one hour

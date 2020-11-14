@@ -11,8 +11,7 @@ COPY requirements.txt /home/requirements.txt
 RUN pip3 install -r /home/requirements.txt
 
 COPY praw.ini /usr/local/lib/python3.8/site-packages/praw/praw.ini
-COPY main.py /home/main.py
-COPY my_token.py /home/my_token.py
+COPY *.py /home/
 
 #running script in container
 
