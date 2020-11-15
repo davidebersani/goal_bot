@@ -36,11 +36,12 @@ if __name__=="__main__" :
             # Check if is a goal post     
             if pattern.match(post.title) is not None and post.link_flair_text=="Media" :
                 text="⚽ " + post.title + "\n\nVideo: " + post.url
-                p = Post(post.id, datetime.datetime.now(datetime.timezone.utc), text)
+                p = Post(post.id, datetime.datetime.fromtimestamp(post.created_utc, tz=datetime.timezone.utc), text)
                 posts.append(p)
         
+        one_hour_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=1)
         # Filter messages. Only messages not published in the last hour
-        to_post = [p for p in posts if p not in posted_last_hour]
+        to_post = [p for p in posts if p not in posted_last_hour and p.timestamp > one_hour_ago]
         
         # Publish post on Telegram
         for p in to_post:
@@ -48,5 +49,4 @@ if __name__=="__main__" :
             posted_last_hour.append(p)
         
         # Remove post older than one hour
-        one_hour_ago = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=1)
         posted_last_hour = [p for p in posted_last_hour if p.timestamp > one_hour_ago]
