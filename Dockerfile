@@ -10,9 +10,9 @@ COPY requirements.txt /home/requirements.txt
 
 RUN pip3 install -r /home/requirements.txt
 
-COPY praw.ini /usr/local/lib/python3.8/site-packages/praw/praw.ini
-COPY *.py /home/
+COPY src/praw.ini /usr/local/lib/python3.8/site-packages/praw/praw.ini
+COPY src/ /home/src
 
 #running script in container
 
-CMD python -u /home/main.py
+CMD python -u /home/src/main.py
